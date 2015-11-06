@@ -15,7 +15,7 @@
 
     
   	 <h2>Docker Demo</h2>
-      <div class="container-fluid">
+      <!-- <div class="container-fluid">
         <div class="spash-wrapper">
           <script>
             $(function(){
@@ -32,15 +32,15 @@
             });
           </script>
           <h1>$ <span class="element"></span></h1>
-        </div>
+        </div> -->
         <div class="row dash-wrapper">
-          <div class="col-xs-6">
+          <div class="col-xs-12">
       		  <div ng-controller="terminalCtrl">
-              <p>{{terminal}}</p>
+              <p>{{tty}}</p>
             </div> <!-- ng-controller="terminalCtrl" -->
           </div> <!-- col-md-6 -->
           <div class="col-xs-6">
-            <div ng-controller="devicesCtrl">
+            <!-- <div ng-controller="devicesCtrl">
               <div ng-repeat="device in devices.resp">
                 <div class="progress device">
                   <div class="progress-bar" role="progressbar" aria-valuenow="{{device.download_progress}}"
@@ -50,7 +50,7 @@
                   </div>
                 </div>
               </div> <!-- ng-repeat="device in devices"-->
-            </div> <!-- ng-controller="devicesCtrl" -->
+            </div> <!-- ng-controller="devicesCtrl" --> -->
           </div> <!-- col-md-6 -->
         </div> <!-- row -->
       </div> <!-- container -->
