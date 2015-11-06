@@ -24,5 +24,8 @@
   "homepage": "https://github.com/atom/electron-quick-start#readme",
   "devDependencies": {
     "electron-prebuilt": "^0.34.0"
+  },
+  "dependencies": {
+    "resin-sdk": "^4.0.0"
   }
 }

@@ -24,6 +24,9 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({width: 800, height: 600});
 
   // and load the index.html of the app.
+  mainWindow.loadUrl('file://' + __dirname + '/app/splash.html');
+
+   // setTimeout(function(){ mainWindow.loadUrl('file://' + __dirname + '/app/index.html'); }, 3000);
   mainWindow.loadUrl('file://' + __dirname + '/app/index.html');
 
   // Open the DevTools.
