@@ -9,7 +9,7 @@ function terminalCtrl($scope)
     var result = '';
 
     command.stderr.on('data', function(data) {
-    	result += data + "</br>"
+    	result += data + '\n'
         $scope.$apply(function(){
 	      $scope.tty = result;
 	    });
