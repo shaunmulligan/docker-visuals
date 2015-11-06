@@ -1,0 +1,94 @@
+.device {
+	margin-bottom: 10px;
+    color: #393E41;
+}
+
+.info {
+    padding: 10px 0;
+    margin-bottom: 0px;
+}
+
+.dash-wrapper {
+    height: 100%;
+}
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+.devices-wrapper, .tty-wrapper {
+	display: none;
+}
+
+.element {
+  height: 500px;
+  line-height: 500px;
+}
+
+.animation {
+    text-align: center;
+}
+
+.Idle {
+    background-color: green;
+}
+
+.Starting {
+    background-color: blue;
+}
+
+.Stopping {
+    background-color: red;
+}
+
+.progress {
+    height: 2px;
+}
+
+
+.Downloading {
+    -webkit-animation: animation 0.7s infinite;
+    -moz-animation: animation 0.7s infinite;
+    animation: animation 0.7s infinite;
+}
+
+@-webkit-keyframes animation {
+    0% {background-color: #45CEEF;} 
+    25% {background-color: #FFF5A5;}
+    50% {background-color: #FFD4DA;}
+    75% {background-color: #99D2E4;} 
+    100% {background-color: #D8CAB4;}
+}
+
+@keyframes animation {
+    0% {background-color: #45CEEF;} 
+    25% {background-color: #FFF5A5;}
+    50% {background-color: #FFD4DA;}
+    75% {background-color: #99D2E4;} 
+    100% {background-color: #D8CAB4;}
+}
+@-moz-keyframes animation{
+    0% {background-color: #45CEEF;} 
+    25% {background-color: #FFF5A5;}
+    50% {background-color: #FFD4DA;}
+    75% {background-color: #99D2E4;} 
+    100% {background-color: #D8CAB4;}
+}
