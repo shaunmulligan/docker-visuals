@@ -23,7 +23,6 @@ function terminalCtrl($scope)
 
 }
 
-
 // app.controller('devicesCtrl', function( devicesService, $scope) {
 //   $scope.devices = devicesService.data;
 //   // console.log($scope.devices)
