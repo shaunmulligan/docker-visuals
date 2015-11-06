@@ -7,56 +7,26 @@ resin.auth.login(credentials, function(error) {
   if (error != null) {
     throw error;
   }
-  console.log("success")
+  console.log("success authenticated with resin API")
 });
 
-function run(cmd, callback) {
-    
-}
+// polls resin app for all devices data
+app.factory('devicesService', function($timeout) {
+	var data = {};
+    (function tick() {
+        resin.models.device.getAllByApplication('applauseMeter',function(error, devices) {
+		  if (error != null) {
+		    throw error;
+		  }
+		  data.resp = devices;
+		  // console.log(devices)
+		});  //1. this returns promise
 
-function close(){
-	console.log('tty process fin')
-}
+	$timeout(tick, 500);
+  	})();
 
-app.service('terminalService', function($rootScope){
-	 this.data = 0
-    console.log()
-
-	var spawn = require('child_process').spawn;
-    var command = spawn("ls");
-    var result = '';
-    command.stdout.on('data', function(data) {
-         result += data.toString();
-         
-    });
-    command.on('close', function(code) {
-        console.log("callback")
-	        this.data = result;
-	        this.data = 1;
-	        console.log(this.data)
-	        $rootScope.$apply();
-    });
-	
+  	return {
+	   data: data
+	};
 });
 
-
-
-
-// app.factory('devicesService', function($timeout) {
-// 	var data = {};
-//     (function tick() {
-//         resin.models.device.getAll(function(error, devices) {
-// 		  if (error != null) {
-// 		    throw error;
-// 		  }
-// 		  data.resp = devices;
-// 		  // console.log(devices)
-// 		});  //1. this returns promise
-
-// 	$timeout(tick, 1000);
-//   	})();
-
-//   	return {
-// 	   data: data
-// 	};
-// });
