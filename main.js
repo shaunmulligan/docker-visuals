@@ -26,7 +26,7 @@ app.on('ready', function() {
   // and load the index.html of the app.
   // mainWindow.loadUrl('file://' + __dirname + '/app/splash.html');
 
-  mainWindow.loadUrl('file://' + __dirname + '/app/index.html');
+  mainWindow.loadUrl('file://' + __dirname + '/src/index.html');
 
   // Open the DevTools.
   mainWindow.openDevTools();
