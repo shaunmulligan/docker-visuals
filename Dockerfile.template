@@ -1,0 +1,12 @@
+FROM resin/%%RESIN_MACHINE_NAME%%-node:4.0.0
+MAINTAINER Craig Mulligan <craig@resin.io>
+
+RUN mkdir -p /usr/src/app && ln -s /usr/src/app /app
+WORKDIR /usr/src/app
+COPY /src/package.json /usr/src/app/package.json
+RUN JOBS=MAX npm install --unsafe-perm
+
+COPY /src /usr/src/app
+ENV INITSYSTEM on
+
+CMD ["bash", "/start.sh"]

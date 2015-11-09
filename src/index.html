@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <!-- splash -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="static/js/typed.min.js"></script>
+    <!-- splash -->
+    <script src="helpers.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="services.js"></script>
+  </head>
+  <body>
+      <div class="container-fluid">
+        <div ng-controller="animationCtrl" class="row animation"><!-- git push typer -->
+          <h1>$ <span class="element"></span></h1>
+        </div><!-- git push typer -->
+        <div class="row dash-wrapper">
+          <div class="col-xs-12 tty-wrapper">
+            <h3>Resin.io builds container and cross compiles for device architecture</h3>
+      		  <div ng-controller="terminalCtrl">
+              <div id="tty"></div>
+            </div> <!-- ng-controller="terminalCtrl" -->
+          </div> <!-- col-md-12 -->
+          <div class="col-xs-12 devices-wrapper">
+             <h3>All available devices now download the new containers </h3>
+             <div ng-controller="devicesCtrl">
+              <div ng-repeat="device in devices.resp">
+                  <div class="device">
+                    <h4 class="info"><b>{{device.name}}</b> {{device.status}}</h4>
+                    <div class="progress {{device.status}}" style="width:{{device.download_progress}}%"></div>
+                </div>
+              </div> <!-- ng-repeat="device in devices" -->
+            </div> <!-- ng-controller="devicesCtrl" --> 
+          </div> <!-- col-md-12 -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+  </body>
+</html>
