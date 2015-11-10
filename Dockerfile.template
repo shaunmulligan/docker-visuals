@@ -24,4 +24,4 @@ RUN JOBS=MAX npm install --unsafe-perm
 
 COPY . /usr/src/app
 
-CMD ["xinit", "/start-app.sh"]
+CMD ["xinit", "/usr/src/app/start-app.sh"]
