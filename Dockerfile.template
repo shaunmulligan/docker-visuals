@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 
 RUN mkdir -p /usr/src/app && ln -s /usr/src/app /app
 WORKDIR /usr/src/app
-COPY /src/package.json /usr/src/app/package.json
+COPY package.json /usr/src/app/package.json
 RUN JOBS=MAX npm install --unsafe-perm
 
 COPY startapp.sh main.js /
