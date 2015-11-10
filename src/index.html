@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="app.js"></script>
     <script src="services.js"></script>
+    <script src="http://cdn.pubnub.com/pubnub-3.7.15.min.js"></script>
   </head>
   <body>
       <div class="container-fluid">
@@ -38,10 +39,10 @@
           <div class="col-xs-12 applause-wrapper">
              <h3>Make some noise!!!</h3>
              <div ng-controller="applauseCtrl">
-              <div ng-repeat="device in devices.resp">
-                  <div class="devicer">
+              <div ng-repeat="meter in meters">
+                  <div class="meter">
                     <div class="bar"></div>
-                    <h4 class="info"><b>{{device.name}}</b></h4>
+                    <h4 class="info"><b>{{meter}}</b>{{ meter.current_level }}{{ meter.max_level }}</h4>
                   </div>
                 </div>
               </div> <!-- ng-repeat="device in devices" -->

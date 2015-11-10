@@ -69,9 +69,43 @@ function devicesCtrl($scope, $rootScope, devicesService) {
 }
 
 function applauseCtrl($scope, $rootScope, devicesService) {
-  $scope.$on('start_applause', function(event) {
-  	$(".applause-wrapper").show();
-  	console.log("applause");
-  	$scope.devices = devicesService.data;
+	$scope.$on('start_applause', function(event) {
+	  	$(".applause-wrapper").show();
+	  	console.log("applause");
+	  	$scope.devices = devicesService.data;
+
+	  	var pubnub = PUBNUB({
+		    subscribe_key: 'sub-c-3bd403c8-0ec0-11e5-a5c2-0619f8945a4f'
+		});
+
+		var devices = $scope.devices.resp
+		var channel_list = []
+		console.log(devices)
+
+		$scope.meters = {};
+
+		for (i = 0; i < devices.length; i++) { 
+		    channel_list.push(devices[i].uuid);
+		    // $scope.meters.
+		    if (i == devices.length - 1) {
+		    	// subscribe to channels
+		    	console.log(channel_list);
+		    	pubnub.subscribe({
+				    channel: channel_list,
+				    message: function(m, env, ch){
+				    	console.log(m)
+				    	console.log(ch)
+				    	$scope.$apply(function () {
+				    		$scope.meters[ch] = m;
+				    		console.log($scope.meters)
+				        });
+				    },
+				    error: function (error) {
+				      // Handle error here
+				      console.log(JSON.stringify(error));
+				    }
+				});
+		    }
+		}
   });
 }
