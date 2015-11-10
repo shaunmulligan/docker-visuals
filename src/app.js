@@ -3,8 +3,8 @@ var resin = require("resin-sdk");
 var pty = require('pty.js');
 var Terminal = require('term.js').Terminal;
 
-rows = process.env.ROWS || 35
-cols = process.env.COLS || 100
+rows = process.env.ROWS || 20
+cols = process.env.COLS || 80
 
 function animationCtrl($scope, $rootScope) { 
     $(".element").typed({
@@ -44,8 +44,8 @@ function terminalCtrl($scope, $rootScope) {
 		command.pipe(term);
 
 	    command.on('close', function() {
-	    	$(".tty-wrapper").hide();
 	        $rootScope.$broadcast('start_download');
+	        $(".tty-wrapper").hide();
 	    });
 	});  
 }
@@ -55,21 +55,16 @@ function devicesCtrl($scope, $rootScope, devicesService) {
 		console.log("download starting");
 		$(".devices-wrapper").show();
 		$scope.devices = devicesService.data;
-		
-		var downloading = true;
-		var device = $scope.devices.resp;
-		for (var i=0; downloading === true; i++) {
+		$scope.download_status
 
-			if (device[i++] != null) {
-				if (device[i++].status === "Starting") {
-				  	downloading = false;
-				  	$(".devices-wrapper").hide();
-				  	console.log('download complete');
-				  	$rootScope.$broadcast('start_applause');
-			    }
-			}
-		  
-		}
+		$scope.$watch('devices', function (newDevice, oldDevice) {
+			console.log(newDevice.resp[0].status)
+		 	if (newDevice.resp[0].status == "Idle") {
+		 		$(".devices-wrapper").hide();
+			 	console.log('download complete');
+			  	$rootScope.$broadcast('start_applause');
+		 	}
+		}, true);
 	}); 
 }
 
