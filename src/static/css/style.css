@@ -34,7 +34,7 @@
     100% { opacity:1; }
 }
 
-.devices-wrapper, .tty-wrapper {
+.devices-wrapper, .tty-wrapper, .applause-wrapper {
 	display: none;
 }
 
@@ -51,16 +51,8 @@
     background-color: green;
 }
 
-.Starting {
-    background-color: blue;
-}
-
-.Stopping {
-    background-color: red;
-}
-
 .progress {
-    height: 2px;
+    height: 10px;
 }
 
 
@@ -100,4 +92,12 @@ html {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.applause-o-meter {
+    background-color: gray; 
+}
+
+.bar {
+    background-color: gray; 
 }

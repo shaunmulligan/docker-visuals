@@ -21,15 +21,15 @@ app.on('window-all-closed', function() {
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
   // Create the browser window.
-  // mainWindow = new BrowserWindow({width: 800, height: 600});
-  mainWindow = new BrowserWindow({"fullscreen": true, "auto-hide-menu-bar": true});
+  mainWindow = new BrowserWindow({width: 800, height: 600});
+  // mainWindow = new BrowserWindow({"fullscreen": true, "auto-hide-menu-bar": true});
   // and load the index.html of the app.
   // mainWindow.loadUrl('file://' + __dirname + '/app/splash.html');
 
   mainWindow.loadUrl('file://' + __dirname + '/src/index.html');
 
   // Open the DevTools.
-  // mainWindow.openDevTools();
+  mainWindow.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {

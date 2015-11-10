@@ -34,7 +34,19 @@
                 </div>
               </div> <!-- ng-repeat="device in devices" -->
             </div> <!-- ng-controller="devicesCtrl" --> 
-          </div> <!-- col-md-12 -->
+          </div> <!-- device-wrapper -->
+          <div class="col-xs-12 applause-wrapper">
+             <h3>Make some noise!!!</h3>
+             <div ng-controller="applauseCtrl">
+              <div ng-repeat="device in devices.resp">
+                  <div class="devicer">
+                    <div class="bar"></div>
+                    <h4 class="info"><b>{{device.name}}</b></h4>
+                  </div>
+                </div>
+              </div> <!-- ng-repeat="device in devices" -->
+            </div> <!-- ng-controller="devicesCtrl" --> 
+          </div> <!-- applause-wrapper -->
         </div> <!-- row -->
       </div> <!-- container -->
   </body>

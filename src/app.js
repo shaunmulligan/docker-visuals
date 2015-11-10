@@ -3,7 +3,8 @@ var resin = require("resin-sdk");
 var pty = require('pty.js');
 var Terminal = require('term.js').Terminal;
 
-
+rows = process.env.ROWS || 35
+cols = process.env.COLS || 100
 
 function animationCtrl($scope, $rootScope) { 
     $(".element").typed({
@@ -25,35 +26,57 @@ function terminalCtrl($scope, $rootScope) {
 
 	    var command = pty.spawn('bash', [script], {
 		  name: 'xterm-color',
-		  cols: 80,
-		  rows: 30,
+		  cols: cols,
+		  rows: rows,
 		});
 
 		var term = new Terminal({
-	      cols: 80,
-	      rows: 24,
+	      cols: cols,
+	      rows: rows,
 	      screenKeys: true
 	    });
 
 	    command.on('data', function(data) {
-		  console.log(data);
+		  // console.log(data);
 		});
-
-	    vph = $(window).height();
 
 	    term.open(document.getElementById('tty'));
 		command.pipe(term);
 
 	    command.on('close', function() {
-	        console.log("callback")
-	        $(".tty-wrapper").hide();
-	        $('.devices-wrapper').show();
+	    	$(".tty-wrapper").hide();
+	        $rootScope.$broadcast('start_download');
 	    });
 	});  
 }
 
-app.controller('devicesCtrl', function( devicesService, $scope) {
-  $scope.devices = devicesService.data;
-  console.log($scope.devices)
-});
+function devicesCtrl($scope, $rootScope, devicesService) { 
+	$scope.$on('start_download', function(event) {
+		console.log("download starting");
+		$(".devices-wrapper").show();
+		$scope.devices = devicesService.data;
+		
+		var downloading = true;
+		var device = $scope.devices.resp;
+		for (var i=0; downloading === true; i++) {
 
+			if (device[i++] != null) {
+				if (device[i++].status === "Starting") {
+				  	downloading = false;
+				  	$(".devices-wrapper").hide();
+				  	console.log('download complete');
+				  	$rootScope.$broadcast('start_applause');
+			    }
+			}
+		  
+		}
+	}); 
+}
+
+function applauseCtrl($scope, $rootScope, devicesService) {
+  $scope.$on('start_applause', function(event) {
+  	$(".applause-wrapper").show();
+  	console.log("applause");
+  	$scope.devices = devicesService.data;
+  });
+}
