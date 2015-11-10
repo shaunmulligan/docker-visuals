@@ -22,7 +22,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/package.json
 RUN JOBS=MAX npm install --unsafe-perm
 
-COPY startapp.sh main.js /
+COPY start-app.sh main.js /
 
 COPY /src /
 
