@@ -22,7 +22,7 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
   // Create the browser window.
   // mainWindow = new BrowserWindow({width: 800, height: 600});
-  mainWindow = new BrowserWindow({fullscreen: true, auto-hide-menu-bar: true});
+  mainWindow = new BrowserWindow({"fullscreen": true, "auto-hide-menu-bar": true});
   // and load the index.html of the app.
   // mainWindow.loadUrl('file://' + __dirname + '/app/splash.html');
 

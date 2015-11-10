@@ -92,3 +92,12 @@
     75% {background-color: #99D2E4;} 
     100% {background-color: #D8CAB4;}
 }
+
+html {
+    cursor: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
