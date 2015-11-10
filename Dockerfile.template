@@ -22,9 +22,6 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/package.json
 RUN JOBS=MAX npm install --unsafe-perm
 
-COPY start-app.sh main.js /
-
-COPY /src /
-
+COPY . /usr/src/app
 
 CMD ["xinit", "/start-app.sh"]
