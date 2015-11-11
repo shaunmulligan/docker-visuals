@@ -18,7 +18,6 @@
         <div ng-controller="animationCtrl" class="row animation"><!-- git push typer -->
           <h1>$ <span class="element"></span></h1>
         </div><!-- git push typer -->
-        <div class="row dash-wrapper">
           <div class="tty-wrapper">
             <h3>Resin.io builds container and cross compiles for device architecture</h3>
       		  <div ng-controller="terminalCtrl">
@@ -32,15 +31,16 @@
                 <div class="progress {{device.status}}" style="width:{{device.download_progress}}%"></div>
               </div> <!-- device --> 
           </div> <!-- device-wrapper -->
-          <div class="row applause-wrapper" ng-controller="applauseCtrl">
+          <div class="applause-wrapper" ng-controller="applauseCtrl">
              <h3>Make some noise!!!</h3>
-                <div ng-repeat="meter in meters" class="meter col-xs-3">
-                  <div class="bar"></div>
-                  <h4 class="info">{{ meter.current_level }}{{ meter.max_level }}</h4>
-                </div>
+             <ul class="chart">
+                <li ng-repeat="meter in meters">
+                  <span class="max" style="height:{{meter.max_level}}%" title="{{ meter.max_level }}, {{meter.current_level}}"></span>
+                  <span style="height:{{meter.current_level}}%"></span>
+                </li>
+              </ul>
             </div> <!-- ng-controller="devicesCtrl" --> 
           </div> <!-- applause-wrapper -->
-        </div> <!-- row -->
       </div> <!-- container -->
   </body>
 </html>
