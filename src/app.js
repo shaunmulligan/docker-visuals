@@ -59,7 +59,7 @@ function devicesCtrl($scope, $rootScope, devicesService) {
 
 		$scope.$watch('devices', function (newDevice, oldDevice) {
 			console.log(newDevice.resp[0].status)
-		 	if (newDevice.resp[0].status == "Starting") {
+		 	if (newDevice.resp[0].status !== "Idle") {
 		 		$(".devices-wrapper").hide();
 			 	console.log('download complete');
 			  	$rootScope.$broadcast('start_applause');
@@ -74,6 +74,12 @@ function objectify(array) {
         result[array[i]] = {};
     }
     return result;
+}
+
+function getColor(value){
+    //value from 0 to 1
+    var hue=((1-value)*120).toString(10);
+    return ["hsl(",hue,",80%,60%)"].join("");
 }
 
 function applauseCtrl($scope, $rootScope, devicesService) {
@@ -108,6 +114,8 @@ function applauseCtrl($scope, $rootScope, devicesService) {
 				    	console.log($scope.meters)
 				    	$scope.$apply(function () {
 				    		$scope.meters[ch].max_level = m.max_level;
+				    		console.log()
+				    		$scope.meters[ch].bg_colour = getColor(m.max_level/32)
 				    		console.log($scope.meters)
 				        });
 				    },

@@ -117,7 +117,7 @@ html {
 .chart span{
     margin:0 1em;
     display: block;
-    background: red;
+    background-color: red;
     height: 10px;
     transition:height 1s;
 }
