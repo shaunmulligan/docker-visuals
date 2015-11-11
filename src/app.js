@@ -68,6 +68,14 @@ function devicesCtrl($scope, $rootScope, devicesService) {
 	}); 
 }
 
+function objectify(array) {
+	result = {}
+	for (var i = 0; i < array.length; i++) { 
+        result[array[i]] = {};
+    }
+    return result;
+}
+
 function applauseCtrl($scope, $rootScope, devicesService) {
 	$scope.$on('start_applause', function(event) {
 	  	$(".applause-wrapper").show();
@@ -92,13 +100,14 @@ function applauseCtrl($scope, $rootScope, devicesService) {
 		    	// subscribe to channels
 		    	console.log("looping-fin");
 		    	console.log(channel_list);
+		    	// $scope.meters = channel_list
+		    	$scope.meters = objectify(channel_list);
 		    	pubnub.subscribe({
 				    channel: channel_list,
 				    message: function(m, env, ch){
-				    	console.log(m)
-				    	console.log(ch)
+				    	console.log($scope.meters)
 				    	$scope.$apply(function () {
-				    		$scope.meters[ch] = m;
+				    		$scope.meters[ch].max_level = m.max_level;
 				    		console.log($scope.meters)
 				        });
 				    },

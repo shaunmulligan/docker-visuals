@@ -35,8 +35,7 @@
              <h3>Make some noise!!!</h3>
              <ul class="chart">
                 <li ng-repeat="meter in meters">
-                  <span class="max" style="height:{{meter.max_level}}%" title="{{ meter.max_level }}, {{meter.current_level}}"></span>
-                  <span style="height:{{meter.current_level}}%"></span>
+                  <span class="max" style="height:{{meter.max_level}}%" title="{{ meter.max_level }}, {{meter.max_level}}"></span>
                 </li>
               </ul>
             </div> <!-- ng-controller="devicesCtrl" --> 

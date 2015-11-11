@@ -117,17 +117,12 @@ html {
 .chart span{
     margin:0 1em;
     display: block;
-    background: blue;
-    transition:all 0.25s;
-    -webkit-transition:all .25s;
-    -moz-transition: all 0.25s;
-}
-
-.chart .max {
     background: red;
+    height: 10px;
+    transition:height 1s;
 }
     
-.chart .max:before{
+.chart span:before{
   position:absolute;
   left:0;right:0;top:100%;
   padding:5px 1em 0;
