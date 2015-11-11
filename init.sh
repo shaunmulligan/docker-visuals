@@ -1,14 +1,14 @@
-#Set the root password as root if not set as an ENV variable
-export PASSWD=${PASSWD:=root}
-#Set the root password
-echo "root:$PASSWD" | chpasswd
+# #Set the root password as root if not set as an ENV variable
+# export PASSWD=${PASSWD:=root}
+# #Set the root password
+# echo "root:$PASSWD" | chpasswd
 
 echo "starting ssh agent"
 eval "$(ssh-agent -s)"
 echo $KEY > /root/.ssh/id_rsa
 chmod 400 /root/.ssh/id_rsa
 
-ssh-add /data/docker
+ssh-add /data/id_rsa
 
 git config --global user.email $EMAIL
 git config --global user.name $NAME
