@@ -25,7 +25,6 @@ RUN JOBS=MAX npm install --unsafe-perm
 ENV HOME /root
 RUN mkdir /.ssh
 COPY known_hosts /root/.ssh/
-COPY config /root/.ssh/
 
 COPY . /usr/src/app
 
