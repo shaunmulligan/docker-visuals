@@ -5,7 +5,8 @@ echo "root:$PASSWD" | chpasswd
 
 echo "starting ssh agent"
 eval "$(ssh-agent -s)"
-ssh-add /data/id_rsa
+echo $key
+ssh-add $KEY
 ssh-add -l
 
 git config --global user.email $EMAIL
