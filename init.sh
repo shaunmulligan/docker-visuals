@@ -9,12 +9,7 @@ $KEY > /data/id_rsa
 chmod 700 /data/id_rsa
 
 ssh-add /data/id_rsa
-expect "Enter passphrase for /data/id_rsa"
-send $PASSPHRASE;
-interact
 ssh-add -l
-
-
 
 git config --global user.email $EMAIL
 git config --global user.name $NAME
