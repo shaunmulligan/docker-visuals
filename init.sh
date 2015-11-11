@@ -12,7 +12,7 @@ ssh-add -l
 git config --global user.email $EMAIL
 git config --global user.name $NAME
 
-ssh -T git@github.com -i /data/id_rsa
+# ssh -T git@github.com -i /data/id_rsa
 
 if [ "$ERASE" == "TRUE" ]; then
 
