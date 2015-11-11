@@ -5,8 +5,8 @@ echo "root:$PASSWD" | chpasswd
 
 echo "starting ssh agent"
 eval "$(ssh-agent -s)"
-$KEY > /.ssh/id_rsa
-$PASSPHRASE > /data/pass
+echo $KEY > /.ssh/id_rsa
+chmod 400 /.ssh/id_rsa
 
 ssh-add -p /data/pass
 ssh-add -l
@@ -24,31 +24,30 @@ if [ "$ERASE" == "TRUE" ]; then
 fi
 
 echo "git clone"
-DIRECTORY="/data/piTFT_mBeast"    # /   (root directory)
+DIRECTORY="/data/applause_o_meter"    # /   (root directory)
 if [ -d "$DIRECTORY" ]; then
 	echo "Project exists"
-	cd /data/piTFT_mBeast
+	cd /data/applause_o_meter
 	git pull
 else
 	echo "Project doesnt exist, cloning"
 	cd /data
-	git clone https://github.com/resin-io-projects/piTFT_mBeast.git
-	cd /data/piTFT_mBeast
+	git clone https://github.com/shaunmulligan/applause-o-meter.git
+	cd /data/applause_o_meter
 
 	git remote add resin $REMOTE
-	if [ "${PUSHTOALL}" == "TRUE" ]; then
-	    arr=($(printenv | awk -F "=" '{print $1}' | grep REMOTE_ADD_))
-	    for i in ${arr[*]}
-	    do
-		eval a=\$$i
-		echo adding remote $i $a
-		git remote set-url --add resin $a
-	    done
-	fi
+	# if [ "${PUSHTOALL}" == "TRUE" ]; then
+	#     arr=($(printenv | awk -F "=" '{print $1}' | grep REMOTE_ADD_))
+	#     for i in ${arr[*]}
+	#     do
+	# 	eval a=\$$i
+	# 	echo adding remote $i $a
+	# 	git remote set-url --add resin $a
+	#     done
+	# fi
 
 fi
 
-
 echo "starting x-server"
-cd /data/piTFT_mBeast && git push resin master --force
+cd /data/applause_o_meter && git push resin master --force
 # xinit /usr/src/app/start-app.sh

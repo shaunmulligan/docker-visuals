@@ -23,5 +23,6 @@ COPY package.json /usr/src/app/package.json
 RUN JOBS=MAX npm install --unsafe-perm
 
 COPY . /usr/src/app
+RUN mkdir /.ssh
 
 CMD ["bash", "/usr/src/app/init.sh"]
