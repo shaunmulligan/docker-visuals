@@ -8,46 +8,34 @@ eval "$(ssh-agent -s)"
 echo $KEY > /.ssh/id_rsa
 chmod 400 /.ssh/id_rsa
 
-ssh-add -p /data/pass
-ssh-add -l
+ssh-add /data/id_rsa
 
 git config --global user.email $EMAIL
 git config --global user.name $NAME
-
-# ssh -T git@github.com -i /data/id_rsa
 
 if [ "$ERASE" == "TRUE" ]; then
 
 	echo "Erasing project"
 	cd /data
-	rm -rf piTFT_mBeast
+	rm -rf applause-o-meter
 fi
 
 echo "git clone"
-DIRECTORY="/data/applause_o_meter"    # /   (root directory)
+DIRECTORY="/data/applause-o-meter"    # /   (root directory)
 if [ -d "$DIRECTORY" ]; then
 	echo "Project exists"
-	cd /data/applause_o_meter
+	cd /data/applause-o-meter
 	git pull
 else
 	echo "Project doesnt exist, cloning"
 	cd /data
 	git clone https://github.com/shaunmulligan/applause-o-meter.git
-	cd /data/applause_o_meter
+	cd /data/applause-o-meter
 
 	git remote add resin $REMOTE
-	# if [ "${PUSHTOALL}" == "TRUE" ]; then
-	#     arr=($(printenv | awk -F "=" '{print $1}' | grep REMOTE_ADD_))
-	#     for i in ${arr[*]}
-	#     do
-	# 	eval a=\$$i
-	# 	echo adding remote $i $a
-	# 	git remote set-url --add resin $a
-	#     done
-	# fi
 
 fi
 
 echo "starting x-server"
-cd /data/applause_o_meter && git push resin master --force
+cd /data/applause-o-meter && git push resin master --force
 # xinit /usr/src/app/start-app.sh
