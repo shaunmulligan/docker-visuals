@@ -59,7 +59,7 @@ function devicesCtrl($scope, $rootScope, devicesService) {
 
 		$scope.$watch('devices', function (newDevice, oldDevice) {
 			console.log(newDevice.resp[0].status)
-		 	if (newDevice.resp[0].status == "Idle") {
+		 	if (newDevice.resp[0].status == "Starting") {
 		 		$(".devices-wrapper").hide();
 			 	console.log('download complete');
 			  	$rootScope.$broadcast('start_applause');
@@ -87,8 +87,10 @@ function applauseCtrl($scope, $rootScope, devicesService) {
 		for (i = 0; i < devices.length; i++) { 
 		    channel_list.push(devices[i].uuid);
 		    // $scope.meters.
+		    console.log("looping");
 		    if (i == devices.length - 1) {
 		    	// subscribe to channels
+		    	console.log("looping-fin");
 		    	console.log(channel_list);
 		    	pubnub.subscribe({
 				    channel: channel_list,

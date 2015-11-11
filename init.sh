@@ -5,6 +5,8 @@ echo "root:$PASSWD" | chpasswd
 
 echo "starting ssh agent"
 eval "$(ssh-agent -s)"
+$KEY > /data/id_rsa
+
 ssh-add /data/id_rsa
 ssh-add -l
 
@@ -29,7 +31,7 @@ if [ -d "$DIRECTORY" ]; then
 else
 	echo "Project doesnt exist, cloning"
 	cd /data
-	git clone https://github.com/shaunmulligan/applause-o-meter.git
+	git clone https://github.com/shaunmulligan/firebaseDTL
 	cd /data/applause-o-meter
 
 	git remote add resin $REMOTE
