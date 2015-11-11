@@ -5,9 +5,6 @@ echo "root:$PASSWD" | chpasswd
 
 echo "starting ssh agent"
 eval "$(ssh-agent -s)"
-$KEY > /data/id_rsa
-chmod 700 /data/id_rsa
-
 ssh-add /data/id_rsa
 ssh-add -l
 
@@ -20,20 +17,20 @@ if [ "$ERASE" == "TRUE" ]; then
 
 	echo "Erasing project"
 	cd /data
-	rm -rf applause-o-meter
+	rm -rf piTFT_mBeast
 fi
 
 echo "git clone"
-DIRECTORY="/data/applause-o-meter"    # /   (root directory)
+DIRECTORY="/data/piTFT_mBeast"    # /   (root directory)
 if [ -d "$DIRECTORY" ]; then
 	echo "Project exists"
-	cd /data/applause-o-meter
+	cd /data/piTFT_mBeast
 	git pull
 else
 	echo "Project doesnt exist, cloning"
 	cd /data
-	git clone https://github.com/shaunmulligan/firebaseDTL
-	cd /data/firebaseDTL
+	git clone https://github.com/resin-io-projects/piTFT_mBeast.git
+	cd /data/piTFT_mBeast
 
 	git remote add resin $REMOTE
 	if [ "${PUSHTOALL}" == "TRUE" ]; then
@@ -45,7 +42,10 @@ else
 		git remote set-url --add resin $a
 	    done
 	fi
+
 fi
 
-echo "starting node app"
-xinit /usr/src/app/start-app.sh
+
+echo "starting x-server"
+cd /data/piTFT_mBeast && git push resin master --force
+# xinit /usr/src/app/start-app.sh
