@@ -9,7 +9,12 @@ $KEY > /data/id_rsa
 chmod 700 /data/id_rsa
 
 ssh-add /data/id_rsa
+expect "Enter passphrase for /data/id_rsa"
+send $PASSPHRASE;
+interact
 ssh-add -l
+
+
 
 git config --global user.email $EMAIL
 git config --global user.name $NAME
@@ -20,7 +25,7 @@ if [ "$ERASE" == "TRUE" ]; then
 
 	echo "Erasing project"
 	cd /data
-	rm -rf piTFT_mBeast
+	rm -rf applause-o-meter
 fi
 
 echo "git clone"
@@ -33,7 +38,7 @@ else
 	echo "Project doesnt exist, cloning"
 	cd /data
 	git clone https://github.com/shaunmulligan/firebaseDTL
-	cd /data/applause-o-meter
+	cd /data/firebaseDTL
 
 	git remote add resin $REMOTE
 	if [ "${PUSHTOALL}" == "TRUE" ]; then
