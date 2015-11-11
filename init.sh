@@ -5,7 +5,8 @@
 
 echo "starting ssh agent"
 eval "$(ssh-agent -s)"
-echo $KEY > /root/.ssh/id_rsa
+echo $KEY | base64 -d > /root/.ssh/id_rsa
+
 chmod 400 /root/.ssh/id_rsa
 
 ssh-add /root/.ssh/id_rsa
