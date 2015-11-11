@@ -6,6 +6,7 @@ echo "root:$PASSWD" | chpasswd
 echo "starting ssh agent"
 eval "$(ssh-agent -s)"
 $KEY > /data/id_rsa
+chmod 700 /data/id_rsa
 
 ssh-add /data/id_rsa
 ssh-add -l
@@ -44,7 +45,6 @@ else
 		git remote set-url --add resin $a
 	    done
 	fi
-
 fi
 
 echo "starting node app"
