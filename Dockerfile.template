@@ -22,7 +22,13 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/package.json
 RUN JOBS=MAX npm install --unsafe-perm
 
-COPY . /usr/src/app
+ENV HOME /root
 RUN mkdir /.ssh
+COPY known_hosts /root/.ssh/
+COPY config /root/.ssh/
+
+COPY . /usr/src/app
+
+
 
 CMD ["bash", "/usr/src/app/init.sh"]
