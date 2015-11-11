@@ -8,7 +8,7 @@ eval "$(ssh-agent -s)"
 echo $KEY > /.ssh/id_rsa
 chmod 400 /.ssh/id_rsa
 
-ssh-add /data/id_rsa
+ssh-add /.ssh/id_rsa
 
 git config --global user.email $EMAIL
 git config --global user.name $NAME
@@ -31,9 +31,8 @@ else
 	cd /data
 	git clone https://github.com/shaunmulligan/applause-o-meter.git
 	cd /data/applause-o-meter
-
 	git remote add resin $REMOTE
-
+	echo $REMOTE
 fi
 
 echo "starting x-server"
